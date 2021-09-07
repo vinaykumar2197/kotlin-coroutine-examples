@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,7 +19,7 @@ import com.vinay.kotlin_coroutine_examples.util.Status
 import com.vinay.kotlin_coroutine_examples.util.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_single_network_call.*
 
-class SingleNetworkCallActivity : AppCompatActivity() {
+class MovieSearchActivity : AppCompatActivity() {
 
 
     private lateinit var viewModel: SingleNetworkCallViewModel
@@ -93,7 +94,23 @@ class SingleNetworkCallActivity : AppCompatActivity() {
 
 
     private fun setUpMovieAdapter(){
-        viewModel.list.observe(this) {
+
+
+        movie_search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                query?.let {
+                    viewModel.setQuery(it)
+                }
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return false
+            }
+        })
+
+
+        viewModel.listSearchedData.observe(this) {
 
             progressBar.visibility = View.GONE
             recyclerView.visibility = View.VISIBLE

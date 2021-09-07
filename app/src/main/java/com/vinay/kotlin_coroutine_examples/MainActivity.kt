@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.vinay.kotlin_coroutine_examples.databinding.ActivityMainBinding
+import com.vinay.kotlin_coroutine_examples.ui.SingleNetwork.MovieSearchActivity
 import com.vinay.kotlin_coroutine_examples.ui.SingleNetwork.SingleNetworkCallActivity
 
 class MainActivity : AppCompatActivity() {
@@ -20,7 +21,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun startSingleNetworkCallActivity(view : View){
-        startActivity(Intent(this@MainActivity, SingleNetworkCallActivity::class.java))
+//        startActivity(Intent(this@MainActivity, SingleNetworkCallActivity::class.java))
+        startActivity(Intent(this@MainActivity, MovieSearchActivity::class.java))
     }
 
 
